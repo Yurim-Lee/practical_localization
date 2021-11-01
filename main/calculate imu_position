@@ -1,0 +1,15 @@
+#1027
+
+import math
+
+before = [1, 3]   #t-1일때 STA 좌표(x,y)
+after = []  #t일때 좌표. output
+
+d = 5 #distance
+theta = 2 #angle
+
+for i in range(len(before)):
+    plus = before[i] + d*math.cos(theta)
+    after.append(plus)
+
+print(after)
