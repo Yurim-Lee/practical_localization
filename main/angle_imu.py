@@ -70,7 +70,7 @@ print(angleGyX)
 print(angleGyY)
 print(angleGyZ)
 
-#1-2. 회전센서 각도값 계산
+#1-2. 자기장 센서 각도값 계산
 anglemag=0
 for q in range(7):
     anglemag=math.tan(math.pi*((Y-magY/X-magX)/180)#X,Y는 어떤 수를 넣어야 할지 모르겠음. 축?
