@@ -1,5 +1,4 @@
 #실행 전에 pip install pandas
-#데이터셋 수정한거 공유하기
 
 import pandas as pd
 
