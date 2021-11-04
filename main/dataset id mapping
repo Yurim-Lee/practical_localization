@@ -1,0 +1,41 @@
+#실행 전에 pip install pandas
+#데이터셋 수정한거 공유하기
+
+import pandas as pd
+
+#타임스탬프 id
+df = pd.read_csv('./dataset/measure1_timestamp_id.csv')
+
+#센서 데이터
+df_sens = pd.read_csv('./dataset/measure1_smartwatch_sens.csv')
+
+#STA 위치
+df_points = pd.read_csv('./dataset/PointsMapping.csv')
+
+ID = [] #센서 데이터 순서대로 ID 매핑한 리스트
+
+#센서 데이터의 타임스탬프가 어떤 범위인지 파악 -> 해당 타임스탬프 범위를 갖는 id로 매핑 -> ID 리스트에 넣기
+
+ID = []
+
+for i in range(5053,58374,1): #58374  5053부터 시작하는 이유: timestamp_id 파일에서 가장 작은 수의 범위에 드는 센서 데이터가 5053쯤부터 시작
+    for j in range(324):
+        if df.loc[j][0] <= df_sens.loc[i][0]<= df.loc[j][1]:  #df.loc[j][0]: timestamp_before, df.loc[j][1]: timestamp_after
+            idd = df.loc[j][2]   #해당 데이터의 타임스탬프가 그 범위에 있으면, 그 id를 가져와라
+            ID.append(idd)
+
+STA_X = []
+STA_Y = []
+
+for j in range(len(ID)):
+    for i in range(324):
+        if ID[j] == df_points.loc[i][0]:  # 그 id이면 x,y 가져와라
+            sta_x = df_points.loc[i][1]
+            sta_y = df_points.loc[i][2]
+            STA_X.append(sta_x)
+            STA_Y.append(sta_y)
+
+#센서 데이터 순서대로 STA의 위치
+print(STA_X)
+print(STA_Y)
+
