@@ -1,6 +1,7 @@
-# STA 이동하는 버전
+
 '''
 좌표 x,y 2차원으로 수정한 버전
+STA 위치는 많지 않아서 하드코딩함 -> 파일럿 이후 파일로 반영 예정
 '''
 
 from mpl_toolkits.mplot3d import Axes3D
