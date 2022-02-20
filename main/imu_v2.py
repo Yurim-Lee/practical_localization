@@ -75,17 +75,6 @@ for j in range(len(gyroX)):
 print("회전센서 GyroX 각도:", angleGyX)
 print("자기장센서 각도:", mag)
 
-"""
-print("회전센서 GyroX 각도:", angleGyX)
-#print(angleGyY)print(angleGyZ)
-
-#1-2.자기장센서 각도값 계산
-mag=[]
-for c in range(len(magX)):
-    az = 90 - atan(magY[c]/magX[c])*180/3
-    mag.append(az)
-print("자기장센서 각도:", mag)
-"""
 
 #2. 위치 계산을 위한 이동거리, 이동방향 구하기
 #2-1.이동거리
@@ -102,13 +91,12 @@ for k in accel:
         d = integrate.quad(lambda x: exp(s), t-1, t)
         d=list(d)
         dist.append(d[0])
+    print("이동거리 : ", dist[0])
     distance.append(dist[0])
-    print("이동거리 : ", distance)
     t=t+1
 print("이동거리 결과 값 : ", distance)#튜플로 나오는 것 중 뒤에 값만 들어가게 어떻게 할지...
 
-print(len(angleGyX))
-print(len(mag))
+
 #2-2.이동방향
 th_tm=3#시간이 t-1일 때 이동방향(임의의 값)
 th=[]
@@ -146,13 +134,10 @@ by=[1]
 xafter = []  #t일때 좌표. output
 yafter = []  #t일때 좌표. output
 
-#theta = 2 #angle
-
 for n in range(len(th)):
     xplus = bx[n] + distance[n]*cos(th[n])
     yplus = by[n] + distance[n]*sin(th[n])
-    print(xplus)
-    print(yplus)
+
     bx.append(xplus)
     by.append(yplus)
     xafter.append(xplus)
