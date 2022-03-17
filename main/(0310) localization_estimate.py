@@ -161,6 +161,24 @@ distance=[]
 for k in accel:
     dist = []
     #1차 적분 가속도->속도
+    x=lambda x: k
+    f = integrate.quad(x, t-1, t)
+    print("속도: ", f)
+    f=list(f)
+    for s in f:
+        #2차 적분 속도->이동거리
+        #distance = integrate(exp(f), (f-0, t - 1, t))
+        y = lambda y: s
+        d = integrate.quad(y, t-1, t)
+        d=list(d)
+        dist.append(d[0])
+    print("이동거리 : ", dist[0])
+    distance.append(dist[0])
+    t=t+1
+"""    
+for k in accel:
+    dist = []
+    #1차 적분 가속도->속도
     f = integrate.quad(lambda x: exp(k), t-1, t)
     print("속도: ", f)
     f=list(f)
@@ -173,8 +191,8 @@ for k in accel:
     print("이동거리 : ", dist[0])
     distance.append(dist[0])
     t=t+1
-print("이동거리 결과 값 : ", distance)#튜플로 나오는 것 중 뒤에 값만 들어가게 어떻게 할지...
-
+"""
+print("이동거리 결과 값 : ", distance)
 
 #2-2.이동방향
 th_tm=3#시간이 t-1일 때 이동방향(임의의 값)
